@@ -14,6 +14,8 @@
 		91A87B071ACF59030007B3D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A87B051ACF59030007B3D6 /* LaunchScreen.xib */; };
 		91A87B131ACF59030007B3D6 /* ab_StoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A87B121ACF59030007B3D6 /* ab_StoreSearchTests.swift */; };
 		91A87B1D1ACF63910007B3D6 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A87B1C1ACF63910007B3D6 /* SearchResult.swift */; };
+		91A87B211AD02D4A0007B3D6 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A87B201AD02D4A0007B3D6 /* SearchResultCell.swift */; };
+		91A87B231AD02DAA0007B3D6 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A87B221AD02DAA0007B3D6 /* SearchResultCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		91A87B111ACF59030007B3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91A87B121ACF59030007B3D6 /* ab_StoreSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ab_StoreSearchTests.swift; sourceTree = "<group>"; };
 		91A87B1C1ACF63910007B3D6 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		91A87B201AD02D4A0007B3D6 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		91A87B221AD02DAA0007B3D6 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +88,9 @@
 				91A87B1C1ACF63910007B3D6 /* SearchResult.swift */,
 				91A87B001ACF59030007B3D6 /* Main.storyboard */,
 				91A87B031ACF59030007B3D6 /* Images.xcassets */,
+				91A87B201AD02D4A0007B3D6 /* SearchResultCell.swift */,
 				91A87B051ACF59030007B3D6 /* LaunchScreen.xib */,
+				91A87B221AD02DAA0007B3D6 /* SearchResultCell.xib */,
 				91A87AFA1ACF59030007B3D6 /* Supporting Files */,
 			);
 			path = "ab-StoreSearch";
@@ -197,6 +203,7 @@
 			files = (
 				91A87B021ACF59030007B3D6 /* Main.storyboard in Resources */,
 				91A87B071ACF59030007B3D6 /* LaunchScreen.xib in Resources */,
+				91A87B231AD02DAA0007B3D6 /* SearchResultCell.xib in Resources */,
 				91A87B041ACF59030007B3D6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +224,7 @@
 			files = (
 				91A87AFF1ACF59030007B3D6 /* SearchViewController.swift in Sources */,
 				91A87B1D1ACF63910007B3D6 /* SearchResult.swift in Sources */,
+				91A87B211AD02D4A0007B3D6 /* SearchResultCell.swift in Sources */,
 				91A87AFD1ACF59030007B3D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
