@@ -8,6 +8,10 @@
 
 import Foundation
 
+func < (lhs: SearchResult, rhs: SearchResult) -> Bool {
+    return lhs.name.localizedStandardCompare(rhs.name) == NSComparisonResult.OrderedAscending
+}
+
 class SearchResult {
     var name = ""
     var artistName = ""
@@ -19,3 +23,4 @@ class SearchResult {
     var price = 0.0
     var genre = ""
 }
+
