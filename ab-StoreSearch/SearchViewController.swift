@@ -286,7 +286,7 @@ extension SearchViewController: UISearchBarDelegate {
                     }
                 }
 
-                // uses auto-completed closure syntax -----------
+                // uses auto-completed standard closure syntax -----------
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.showNetworkError()
                 })
@@ -335,7 +335,6 @@ extension SearchViewController: UITableViewDataSource {
             }
             return cell
         }
-
     }
 }
 
