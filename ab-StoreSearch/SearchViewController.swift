@@ -18,18 +18,20 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
 
 
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: NSURLSessionDataTask?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.becomeFirstResponder()
 
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = 80
 
         var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
@@ -42,15 +44,32 @@ class SearchViewController: UIViewController {
         tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
     }
 
-    func urlWithSearchText(searchText: String) -> NSURL {
+    func urlWithSearchText(searchText: String, category: Int) -> NSURL {
+
+        var entityName: String
+        switch category {
+            case 1: entityName = "musicTrack"
+            case 2: entityName = "software"
+            case 3: entityName = "ebook"
+            default: entityName = ""
+        }
 
         // handles spaces and special charactersin search
         let escapedSearchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
 
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200", escapedSearchText)
-        let url = NSURL(string: urlString)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
 
+        let url = NSURL(string: urlString)
         return url!
+    }
+
+    // MARK: - ACTIONS  ------------------------------ //
+    @IBAction func segmentChanged(sender: UISegmentedControl) {
+        performSearch()
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        performSearch()
     }
 
     func parseJSON(data: NSData) -> [String: AnyObject]? {
@@ -65,7 +84,7 @@ class SearchViewController: UIViewController {
                 println("Unknown JSON Error")
             }
 
-        return nil
+            return nil
     }
 
     func showNetworkError() {
@@ -242,10 +261,13 @@ extension SearchViewController: UISearchBarDelegate {
         return .TopAttached
     }
 
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+
+    func performSearch () {
 
         if !searchBar.text.isEmpty {
             searchBar.resignFirstResponder()
+
+            dataTask?.cancel()
 
             isLoading = true
             tableView.reloadData()
@@ -253,14 +275,15 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = [SearchResult]()
 
-            let url = self.urlWithSearchText(searchBar.text)
+            let url = self.urlWithSearchText(searchBar.text, category: segmentedControl.selectedSegmentIndex)
             let session = NSURLSession.sharedSession()
-            let dataTask = session.dataTaskWithURL(url, completionHandler: {
+
+            dataTask = session.dataTaskWithURL(url, completionHandler: {
                 data, response, error in
 
-//                 println("On the main thread?" + (NSThread.currentThread().isMainThread ? "Yes" : "No"))
                 if let error = error {
                     println("Failure! \(error)")
+                    if error.code == -999 {return}
 
                 } else if let httpResponse = response as? NSHTTPURLResponse {
 
@@ -274,6 +297,7 @@ extension SearchViewController: UISearchBarDelegate {
                                 self.isLoading = false
                                 self.tableView.reloadData()
                             }
+                            return
                         }
 
                     } else {
@@ -292,7 +316,7 @@ extension SearchViewController: UISearchBarDelegate {
                 }
             })
 
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
 }
