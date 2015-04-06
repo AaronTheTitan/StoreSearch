@@ -18,7 +18,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
 
-
+    var searchResult: SearchResult!
+    var downloadTask: NSURLSessionDownloadTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,10 @@ class DetailViewController: UIViewController {
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
+
+        if searchResult != nil {
+            updateUI()
+        }
     }
 
 
@@ -41,17 +46,52 @@ class DetailViewController: UIViewController {
     @IBAction func close() {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func openInStore() {
+        if let url = NSURL(string: searchResult.storeURL) {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
-    */
+
+    func updateUI() {
+        nameLabel.text = searchResult.name
+
+        if searchResult.artistName.isEmpty {
+            artistNameLabel.text = "Unknown"
+        } else {
+            artistNameLabel.text = searchResult.artistName
+        }
+
+        kindLabel.text = searchResult.kindForDisplay()
+        genreLabel.text = searchResult.genre
+
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        formatter.currencyCode = searchResult.currency
+
+        var priceText: String
+        if searchResult.price == 0 {
+            priceText = "Free"
+        } else if let text = formatter.stringFromNumber(searchResult.price) {
+            priceText = text
+        } else {
+            priceText = ""
+        }
+
+        priceButton.setTitle(priceText, forState: .Normal)
+
+        if let url = NSURL(string: searchResult.artworkURL100) {
+            downloadTask = artworkImageView.loadImageWithURL(url)
+        }
+
+    }
+
+    deinit {
+        println("deinit \(self)")
+        downloadTask?.cancel()
+    }
+
+
 
 }
 

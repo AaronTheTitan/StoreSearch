@@ -140,17 +140,26 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeE-Wo-0JR">
-                                        <rect key="frame" x="176" y="212" width="60" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeE-Wo-0JR">
+                                        <rect key="frame" x="174" y="210" width="60" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="KE4-Op-dsF"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                         <state key="normal" title="$9.99" backgroundImage="PriceButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="openInStore" destination="Kvw-xm-F60" eventType="touchUpInside" id="qVQ-Wu-sqJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.95000000000000007" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="3SL-Ob-1xS"/>
+                                    <constraint firstAttribute="bottom" secondItem="UeE-Wo-0JR" secondAttribute="bottom" constant="6" id="Gkd-a8-9Of"/>
+                                    <constraint firstAttribute="trailing" secondItem="UeE-Wo-0JR" secondAttribute="trailing" constant="6" id="wr0-hj-T1L"/>
                                     <constraint firstAttribute="height" constant="240" id="ybA-9O-aBH"/>
                                 </constraints>
                             </view>
