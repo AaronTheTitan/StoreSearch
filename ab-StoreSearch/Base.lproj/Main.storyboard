@@ -214,6 +214,36 @@
             </objects>
             <point key="canvasLocation" x="1583" y="658"/>
         </scene>
+        <!--Landscape View Controller-->
+        <scene sceneID="Rae-w2-3Xv">
+            <objects>
+                <viewController storyboardIdentifier="LandscapeViewController" id="XW2-w5-UL1" customClass="LandscapeViewController" customModule="ab_StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="obe-6I-qUP"/>
+                        <viewControllerLayoutGuide type="bottom" id="wRM-v9-zP5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5bB-46-L9z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're in landscape" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTP-HY-sbY">
+                                <rect key="frame" x="227" y="290" width="146" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="RTP-HY-sbY" secondAttribute="centerX" id="KcA-lS-yy3"/>
+                            <constraint firstAttribute="centerY" secondItem="RTP-HY-sbY" secondAttribute="centerY" id="iJF-7z-kCJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gcV-jg-ozI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1583" y="1353"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CloseButton" width="15" height="15"/>
