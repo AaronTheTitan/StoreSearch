@@ -11,11 +11,20 @@ import Foundation
 typealias SearchComplete = (Bool) -> Void
 
 class Search {
-    var searchResults = [SearchResult]()
-    var hasSearched = false
-    var isLoading = false
 
+//    var searchResults = [SearchResult]()
+//    var hasSearched = false
+//    var isLoading = false
+
+    private(set) var state: State = .NotSearchedYet
     private var dataTask: NSURLSessionDataTask? = nil
+
+    enum State {
+        case NotSearchedYet
+        case Loading
+        case NoResults
+        case Results([SearchResult])
+    }
 
     enum Category: Int {
         case All = 0
@@ -39,9 +48,7 @@ class Search {
         if !text.isEmpty {
             dataTask?.cancel()
 
-            isLoading = true
-            hasSearched = true
-            searchResults = [SearchResult]()
+            state = .Loading
 
             let url = urlWithSearchText(text, category: category)
 
@@ -49,6 +56,7 @@ class Search {
             dataTask = session.dataTaskWithURL(url, completionHandler: {
                 data, response, error in
 
+                self.state = .NotSearchedYet
                 var success = false
 
                 if let error = error {
@@ -56,19 +64,16 @@ class Search {
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data) {
-                            self.searchResults = self.parseDictionary(dictionary)
-                            self.searchResults.sort(<)
-
-                            println("Success!")
-                            self.isLoading = false
+                           var searchResults = self.parseDictionary(dictionary)
+                            if searchResults.isEmpty {
+                                self.state = .NoResults
+                            } else {
+                                searchResults.sort(<)
+                                self.state = .Results(searchResults)
+                            }
                             success = true
                         }
                     }
-                }
-
-                if !success {
-                    self.hasSearched = false
-                    self.isLoading = false
                 }
 
                 dispatch_async(dispatch_get_main_queue()) {
