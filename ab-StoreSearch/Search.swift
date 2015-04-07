@@ -17,7 +17,23 @@ class Search {
 
     private var dataTask: NSURLSessionDataTask? = nil
 
-    func performSearchForText(text: String, category: Int, completion: SearchComplete) {
+    enum Category: Int {
+        case All = 0
+        case Music = 1
+        case Software = 2
+        case EBook = 3
+
+        var entityName: String {
+            switch self {
+                case .All: return ""
+                case .Music: return "musicTrack"
+                case .Software: return "software"
+                case .EBook: return "ebook"
+            }
+        }
+    }
+
+    func performSearchForText(text: String, category: Category, completion: SearchComplete) {
         println("Searching...")
 
         if !text.isEmpty {
@@ -46,7 +62,6 @@ class Search {
                             println("Success!")
                             self.isLoading = false
                             success = true
-//                            return
                         }
                     }
                 }
@@ -59,24 +74,15 @@ class Search {
                 dispatch_async(dispatch_get_main_queue()) {
                     completion(success)
                 }
-//                println("Failure! \(response)")
-//                self.hasSearched = false
-//                self.isLoading = false
             })
 
             dataTask?.resume()
         }
     }
 
-    func urlWithSearchText(searchText: String, category: Int) -> NSURL {
+    func urlWithSearchText(searchText: String, category: Category) -> NSURL {
 
-        var entityName: String
-        switch category {
-        case 1: entityName = "musicTrack"
-        case 2: entityName = "software"
-        case 3: entityName = "ebook"
-        default: entityName = ""
-        }
+        let entityName = category.entityName
 
         // handles spaces and special charactersin search
         let escapedSearchText = searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
