@@ -15,6 +15,7 @@
 		910F2FB81AD2D93A00CDD9EC /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F2FB71AD2D93A00CDD9EC /* SlideOutAnimationController.swift */; };
 		914684F11AD34B5E00C40076 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914684F01AD34B5E00C40076 /* FadeOutAnimationController.swift */; };
 		915A8F7C1AD337220081A94C /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8F7B1AD337220081A94C /* LandscapeViewController.swift */; };
+		91A02A2B1AD44B34000835A7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A02A2A1AD44B34000835A7 /* Search.swift */; };
 		91A87AFD1ACF59030007B3D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A87AFC1ACF59030007B3D6 /* AppDelegate.swift */; };
 		91A87AFF1ACF59030007B3D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A87AFE1ACF59030007B3D6 /* SearchViewController.swift */; };
 		91A87B021ACF59030007B3D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A87B001ACF59030007B3D6 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		910F2FB71AD2D93A00CDD9EC /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideOutAnimationController.swift; path = "ab-StoreSearch/SlideOutAnimationController.swift"; sourceTree = "<group>"; };
 		914684F01AD34B5E00C40076 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FadeOutAnimationController.swift; path = "ab-StoreSearch/FadeOutAnimationController.swift"; sourceTree = "<group>"; };
 		915A8F7B1AD337220081A94C /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LandscapeViewController.swift; path = "ab-StoreSearch/LandscapeViewController.swift"; sourceTree = "<group>"; };
+		91A02A2A1AD44B34000835A7 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Search.swift; path = "ab-StoreSearch/Search.swift"; sourceTree = "<group>"; };
 		91A87AF71ACF59030007B3D6 /* ab-StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ab-StoreSearch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A87AFB1ACF59030007B3D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91A87AFC1ACF59030007B3D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				914684F01AD34B5E00C40076 /* FadeOutAnimationController.swift */,
+				91A02A2A1AD44B34000835A7 /* Search.swift */,
 				910F2FAF1AD1F23E00CDD9EC /* DetailViewController.swift */,
 				910F2FB11AD1F4E100CDD9EC /* DimmingPresentationController.swift */,
 				910F2FB31AD2CF3B00CDD9EC /* GradientView.swift */,
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A02A2B1AD44B34000835A7 /* Search.swift in Sources */,
 				91A87AFF1ACF59030007B3D6 /* SearchViewController.swift in Sources */,
 				910F2FB21AD1F4E100CDD9EC /* DimmingPresentationController.swift in Sources */,
 				914684F11AD34B5E00C40076 /* FadeOutAnimationController.swift in Sources */,
