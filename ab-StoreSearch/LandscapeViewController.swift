@@ -18,6 +18,11 @@ class LandscapeViewController: UIViewController {
     private var firstTime = true
     private var downloadTasks = [NSURLSessionDownloadTask]()
 
+    deinit {
+        for task in downloadTasks {
+            task.cancel()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,12 +125,13 @@ class LandscapeViewController: UIViewController {
         var marginX: CGFloat = 0
         var marginY: CGFloat = 20
 
+        let scrollViewWidth = scrollView.bounds.size.width
+
         let buttonWidth: CGFloat = 82
         let buttonHeight: CGFloat = 82
         let paddingHorz = (itemWidth - buttonWidth)/2
         let paddingVert = (itemHeight - buttonHeight)/2
 
-        let scrollViewWidth = scrollView.bounds.size.width
 
         switch scrollViewWidth {
         case 568:
@@ -155,18 +161,21 @@ class LandscapeViewController: UIViewController {
 
         for (index, searchResult) in enumerate(searchResults) {
 
-            let button = UIButton.buttonWithType(.System) as UIButton
+            let button = UIButton.buttonWithType(.Custom) as UIButton
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), forState: .Normal)
-            button.tag = 2000 + index
-            button.addTarget(self, action: Selector("buttonPressed:"), forControlEvents: .TouchUpInside)
 
             button.frame = CGRect(x: x + paddingHorz,
                                   y: marginY + CGFloat(row) * itemHeight + paddingVert,
                               width: buttonWidth,
                              height: buttonHeight)
 
-            downloadImageForSearchResult(searchResult, andPlaceOnButton: button)
+            button.tag = 2000 + index
+            button.addTarget(self, action: Selector("buttonPressed:"), forControlEvents: .TouchUpInside)
+
             scrollView.addSubview(button)
+
+            downloadImageForSearchResult(searchResult, andPlaceOnButton: button)
+
             ++row
             if row == rowsPerPage {
                 row = 0
@@ -184,7 +193,6 @@ class LandscapeViewController: UIViewController {
         let numPages = 1 + (searchResults.count - 1) / buttonsPerPage
 
         scrollView.contentSize = CGSize(width: CGFloat(numPages) * scrollViewWidth, height: scrollView.bounds.size.height)
-        println("Number of pages: \(numPages)")
 
         pageControl.numberOfPages = numPages
         pageControl.currentPage = 0
@@ -215,13 +223,6 @@ class LandscapeViewController: UIViewController {
         }
     }
 
-    deinit {
-        println("deinit \(self)")
-
-        for task in downloadTasks {
-            task.cancel()
-        }
-    }
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -237,18 +238,16 @@ class LandscapeViewController: UIViewController {
         }
     }
 
+    @IBAction func pageChanged(sender: UIPageControl) {
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: {
+            self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
+            }, completion: nil)
+    }
 
 
 }
 
 extension LandscapeViewController: UIScrollViewDelegate {
-
-    @IBAction func pageChanged(sender: UIPageControl) {
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: {
-            self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
-        }, completion: nil)
-    }
-
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let width = scrollView.bounds.size.width

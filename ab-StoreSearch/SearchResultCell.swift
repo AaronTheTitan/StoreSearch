@@ -58,13 +58,5 @@ class SearchResultCell: UITableViewCell {
         nameLabel.text = nil
         artistNameLabel.text = nil
         artworkImageView.image = nil
-
-        println("got dat suckca")
     }
-
-
-// MARK: - ADJUST NAMES FOR KIND ----------------------------------------------- //
-
-
-
 }
