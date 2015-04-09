@@ -16,7 +16,6 @@
 		914684F11AD34B5E00C40076 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914684F01AD34B5E00C40076 /* FadeOutAnimationController.swift */; };
 		915A8F7C1AD337220081A94C /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8F7B1AD337220081A94C /* LandscapeViewController.swift */; };
 		918EBD011AD58D0E00793C92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 918EBCFF1AD58D0E00793C92 /* Localizable.strings */; };
-		918EBD031AD5BB5800793C92 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91A87AFB1ACF59030007B3D6 /* Info.plist */; };
 		918EBD071AD5C21C00793C92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 918EBD091AD5C21C00793C92 /* InfoPlist.strings */; };
 		91A02A2B1AD44B34000835A7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A02A2A1AD44B34000835A7 /* Search.swift */; };
 		91A87AFD1ACF59030007B3D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A87AFC1ACF59030007B3D6 /* AppDelegate.swift */; };
@@ -95,7 +94,6 @@
 		91A87AEE1ACF59030007B3D6 = {
 			isa = PBXGroup;
 			children = (
-				918EBD091AD5C21C00793C92 /* InfoPlist.strings */,
 				91A87AF91ACF59030007B3D6 /* ab-StoreSearch */,
 				91A87B0F1ACF59030007B3D6 /* ab-StoreSearchTests */,
 				91A87AF81ACF59030007B3D6 /* Products */,
@@ -141,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				91A87AFB1ACF59030007B3D6 /* Info.plist */,
+				918EBD091AD5C21C00793C92 /* InfoPlist.strings */,
 				918EBCFF1AD58D0E00793C92 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -207,7 +206,7 @@
 		91A87AEF1ACF59030007B3D6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Aaron Bradley";
 				TargetAttributes = {
 					91A87AF61ACF59030007B3D6 = {
@@ -251,7 +250,6 @@
 				91E27C3D1AD4E70200C238FC /* SearchResultCell.xib in Resources */,
 				91E27C321AD4E31800C238FC /* NothingFoundCell.xib in Resources */,
 				91A87B041ACF59030007B3D6 /* Images.xcassets in Resources */,
-				918EBD031AD5BB5800793C92 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +318,6 @@
 				918EBD0A1AD5C21E00793C92 /* nl */,
 			);
 			name = InfoPlist.strings;
-			path = "ab-StoreSearch";
 			sourceTree = "<group>";
 		};
 		91A87B001ACF59030007B3D6 /* Main.storyboard */ = {
@@ -445,6 +442,7 @@
 				INFOPLIST_FILE = "ab-StoreSearch/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -455,6 +453,7 @@
 				INFOPLIST_FILE = "ab-StoreSearch/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

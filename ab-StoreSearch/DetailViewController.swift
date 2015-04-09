@@ -23,9 +23,17 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
 
-    var searchResult: SearchResult!
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded() {
+                updateUI()
+            }
+        }
+    }
+
     var downloadTask: NSURLSessionDownloadTask?
     var dismissAnimationStyle = AnimationStyle.Fade
+    var isPopUp = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +41,20 @@ class DetailViewController: UIViewController {
         view.backgroundColor = UIColor.clearColor()
         popupView.layer.cornerRadius = 10
 
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+        if isPopUp {
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+        } else {
+            view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+            popupView.hidden = true
+
+            if let displayName = NSBundle.mainBundle().localizedInfoDictionary?["CFBundleDisplayName"] as? NSString {
+                title = displayName as String
+            }
+        }
+
 
 
         if searchResult != nil {
@@ -94,6 +112,7 @@ class DetailViewController: UIViewController {
             downloadTask = artworkImageView.loadImageWithURL(url)
         }
 
+        popupView.hidden = false
     }
 
     deinit {
